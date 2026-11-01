@@ -99,11 +99,9 @@ window.gZenVerticalTabsManager = {
     const contextMenu = document.getElementById("toolbar-context-menu");
     contextMenu.addEventListener("popupshowing", event => {
       if (event.target === contextMenu) {
-        const show = gZenWorkspaces.shouldShowContainers;
-        menu.hidden = !show;
-        if (separator) {
-          separator.hidden = !show;
-        }
+        const hidden = !gZenWorkspaces.shouldShowContainers;
+        menu.hidden = hidden;
+        separator.hidden = hidden;
       }
     });
     document
