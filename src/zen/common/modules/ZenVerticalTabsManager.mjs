@@ -88,6 +88,7 @@ window.gZenVerticalTabsManager = {
       <menuseparator/>
     `);
     const menu = fragment.firstElementChild;
+    const separator = menu.nextElementSibling;
     menu.addEventListener("popupshowing", event =>
       gZenWorkspaces.updateWorkspaceActionsMenuContainer(event)
     );
@@ -98,7 +99,11 @@ window.gZenVerticalTabsManager = {
     const contextMenu = document.getElementById("toolbar-context-menu");
     contextMenu.addEventListener("popupshowing", event => {
       if (event.target === contextMenu) {
-        menu.hidden = !gZenWorkspaces.shouldShowContainers;
+        const show = gZenWorkspaces.shouldShowContainers;
+        menu.hidden = !show;
+        if (separator) {
+          separator.hidden = !show;
+        }
       }
     });
     document
